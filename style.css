@@ -63,18 +63,21 @@ p {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .bridge-item img {
     width: 45%;
     border: 3px solid #ffa500;
-    transition: transform 0.3s ease;
 }
 
+.rightimg  {
+    float: right; 
+    margin: 7px 0 7px 7px; 
+   }
 
 .text {
-    width: 50%;
+    width: 45%;
     text-align: left;
 }
 
