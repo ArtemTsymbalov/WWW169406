@@ -23,7 +23,7 @@ a:hover {
 
 /* Stylowanie tła i głównej struktury */
 body {
-    background-image: url('./imgs/mostNight.png');
+    background-image: url('../imgs/mostNight.png');
     background-size: cover;
     background-attachment: fixed;
     font-family: Arial, sans-serif;
