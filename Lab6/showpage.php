@@ -1,25 +1,17 @@
 <?php
-function PokazPodstrone($id) {
-    // Czyszczenie $id, aby zapobiec atakom SQL Injection
-    $id_clear =  htmlspecialchars($id);
 
-    // Zapytanie SQL
-    $query = "SELECT * FROM page_list WHERE id='$id_clear' LIMIT 1";
+function show_page($id, $link) {
+    $id_clear = htmlspecialchars($id);
+    $query = "SELECT * FROM page_list WHERE page_title='$id_clear' LIMIT 1;";
     $result = mysqli_query($link, $query);
-
-    if (!$result) {
-        return 'Błąd zapytania: ' . mysqli_error($link);
-    }
 
     $row = mysqli_fetch_array($result);
 
-    // Sprawdzenie, czy strona istnieje
-    if (empty($row['id'])) {
-        $Sweb = '[nie_znaleziono_strony]';
+    if(empty($row['id'])) {
+        $web = '[nie_znaleziono_strony]';
     } else {
-        $Sweb = $row['page_content'];
+        $web = $row['page_content'];
     }
+    return $web;
 
-    return $Sweb;
 }
-?>

@@ -1,3 +1,13 @@
+<?php
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+/* po tym komentarzu będzie kod do dynamicznego ładowania stron */
+
+require_once "config/constants.php";
+include("cfg.php");
+include ("showpage.php");
+
+$web = show_page($_GET['idp'], $link);
+?>
 <!DOCTYPE HTML>
 <html lang="pl">
   <head>
@@ -29,29 +39,7 @@
       <?php
       error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
       $strona = 'html/glowna.html';
-      include('cfg.php');
-      // Wybór stron na podstawie parametru idp
-      if (isset($_GET['idp'])) {
-          if ($_GET['idp'] == 'danyangKunshan') {
-              $strona = 'html/danyangKunshan.html';
-          } elseif ($_GET['idp'] == 'tianjinGrandBridge') {
-              $strona = 'html/tianjinGrandBridge.html';
-          } elseif ($_GET['idp'] == 'weinanWeiheGrandBridge') {
-              $strona = 'html/weinanWeiheGrandBridge.html';
-          } elseif ($_GET['idp'] == 'bangNaExpressway') {
-              $strona = 'html/bangNaExpressway.html';
-          } elseif ($_GET['idp'] == 'manchac') {
-              $strona = 'html/manchac.html';
-          } elseif ($_GET['idp'] == 'kontakt') {
-              $strona = 'html/kontakt.html';
-          } elseif ($_GET['idp'] == 'lab2js') {
-            $strona = 'html/lab2js.html';
-          } elseif ($_GET['idp'] == 'lab3') { 
-            $strona = 'html/lab3.html';
-          } elseif ($_GET['idp'] == 'filmy') {
-            $strona = 'html/filmy.html';
-        }
-      }
+      
 
       // Sprawdzenie istnienia pliku i załączenie
       if (file_exists($strona)) {
