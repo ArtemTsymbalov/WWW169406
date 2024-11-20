@@ -2,10 +2,10 @@
 // Ustawienia połączenia z bazą danych
 $dbhost = 'localhost';
 $dbuser = 'root';
-$dbpass = ''; // Domyślnie w XAMPP hasło jest puste
-$baza = 'strona';
-$login = "";
-$pass = "";
+$dbpass = '';
+$baza = 'moja_strona';
+$login = "admin";
+$pass = "pass";
 
 // Próba połączenia za pomocą mysqli
 $link = mysqli_connect($dbhost, $dbuser, $dbpass, $baza);

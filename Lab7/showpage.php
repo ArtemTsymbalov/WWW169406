@@ -7,11 +7,12 @@ function show_page($id, $link) {
 
     $row = mysqli_fetch_array($result);
 
-    if(empty($row['id'])) {
-        $web = '[nie_znaleziono_strony]';
+    if (empty($row)) {
+        $web = '<h1>Page not faund</h1>';
     } else {
         $web = $row['page_content'];
     }
+    
     return $web;
 
 }

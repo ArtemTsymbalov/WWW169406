@@ -41,12 +41,8 @@ $web = show_page($_GET['idp'], $link);
       $strona = 'html/glowna.html';
       
 
-      // Sprawdzenie istnienia pliku i załączenie
-      if (file_exists($strona)) {
-          include($strona);
-      } else {
-          echo 'Strona nie znaleziona.';
-      }
+      echo $web;
+
       ?>
     </div>
   </body>
