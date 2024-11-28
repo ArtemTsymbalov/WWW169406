@@ -1,52 +1,48 @@
 <?php
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
 require 'vendor/autoload.php';
 
-//Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
 try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'artemolegov228@gmail.com';                     //SMTP username
-    $mail->Password   = '';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->SMTPDebug = SMTP::DEBUG_OFF;  // Disable debug output
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'artemolegov228@gmail.com';
+    $mail->Password   = '';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
-    // Обработка данных из формы
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $subject = htmlspecialchars($_POST['subject']);
-    $message = htmlspecialchars($_POST['message']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
+        $name = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $subject = htmlspecialchars($_POST['subject']);
+        $message = htmlspecialchars($_POST['message']);
 
-    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        echo "Все поля обязательны для заполнения!";
-    } else {
-        // Отправка письма
-        try {
-            $mail->setFrom($email, $name);  // От кого (email и имя пользователя)
-            $mail->addAddress('artemolegov228@gmail.com');  // Кому (ваш email)
-            $mail->Subject = $subject;  // Тема письма
-            $mail->Body    = $message;  // Тело письма
+        if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+            echo "All fields are required!";
+        } else {
+            try {
+                $mail->setFrom('artemolegov228@gmail.com', 'Your Website');
+                $mail->addAddress('artemtsimbalov@gmail.com');
+                $mail->addReplyTo($email, $name);
 
-            $mail->send();
-            echo "Сообщение было отправлено";
-        } catch (Exception $e) {
-            echo "Сообщение не было отправлено. Ошибка Mailer: {$mail->ErrorInfo}";
+                $mail->Subject = $subject . ' | From: ' . $email;
+                $mail->Body    = $message;
+
+                $mail->send();
+                echo "<p>Message has been sent successfully.</p>";  // Success message
+            } catch (Exception $e) {
+                echo "<p>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>";
+            }
         }
     }
-}
 
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "<p>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>";
 }
+?>
