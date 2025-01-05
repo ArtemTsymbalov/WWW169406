@@ -169,5 +169,23 @@ class ProductManager {
         }
     }
     
+    public function usunProdukt($productId) {
+        // Prepare the delete query
+        $query = "DELETE FROM products WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        
+        if ($stmt) {
+            $stmt->bind_param("i", $productId);
+            if ($stmt->execute()) {
+                echo "Product deleted successfully!";
+            } else {
+                echo "Error deleting product: " . $this->conn->error;
+            }
+            $stmt->close();
+        } else {
+            echo "Error preparing statement: " . $this->conn->error;
+        }
+    }
+    
     // Continue with other methods...
 } 

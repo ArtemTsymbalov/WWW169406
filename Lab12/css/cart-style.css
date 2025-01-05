@@ -1,0 +1,64 @@
+/**
+ * Cart Page Styles
+ * 
+ * Defines styles specific to the cart page.
+ */
+
+body {
+    background-color: #f4f4f4;
+}
+
+.cart-container {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    color: black;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-price {
+    font-weight: bold;
+}
+
+.cart-total {
+    font-size: 1.2em;
+    margin-top: 20px;
+    text-align: right;
+}
+
+button {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #27ae60;
+} 

@@ -9,7 +9,7 @@
  */
 
 session_start();
-include('../cfg.php');
+include('../config/cfg.php');
 require_once('CategoryManager.php');
 require_once('ProductManager.php');
 
