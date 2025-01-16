@@ -186,6 +186,4 @@ class ProductManager {
             echo "Error preparing statement: " . $this->conn->error;
         }
     }
-    
-    // Continue with other methods...
 } 
